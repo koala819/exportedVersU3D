@@ -25,8 +25,11 @@ public class WriterU3D {
 		buffer.limit(blockLength);
 
 		buffer.putInt((int) b.getBlockType());
+		System.out.println("blockType = "+b.getBlockType());
 		buffer.putInt((int) b.getDataSize());
+		System.out.println("\n DataSize = "+b.getDataSize());
 		buffer.putInt((int) b.getMetaDataSize());
+		System.out.println("\n MetaDataSize = "+b.getMetaDataSize());
 
 		for (int i = 0; i < dataSize; i++)
 			buffer.putInt((int) b.getData()[i]);
@@ -41,7 +44,7 @@ public class WriterU3D {
 	public static int jApprendAEcrire(DataBlock b, WritableByteChannel o) throws IOException {
 		int dataSize = (int) Math.ceil(b.getDataSize() / 4.0); // include padding
 		int metaDataSize = (int) Math.ceil(b.getMetaDataSize() / 4.0); // include padding
-System.out.println("controle dataSize ="+dataSize+"\n metadataSize ="+metaDataSize);
+//System.out.println("controle dataSize ="+dataSize+"\n metadataSize ="+metaDataSize);
 		int blockLength = (int) (4 * (dataSize + metaDataSize));
 
 		ByteBuffer buffer = ByteBuffer.allocate(1024 * 1024).order(LITTLE_ENDIAN);
@@ -58,7 +61,6 @@ System.out.println("controle dataSize ="+dataSize+"\n metadataSize ="+metaDataSi
 
 		for (int i = 0; i < dataSize; i++) {
 			buffer.putInt((int) b.getData()[i]);
-			System.out.println("\n check data ="+b.getData()[i]);
 		}
 		for (int i = 0; i < metaDataSize; i++)
 			buffer.putInt((int) b.getMetaData()[i]);
