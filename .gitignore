@@ -1,0 +1,8 @@
+#/bin/
+TEMP/
+.metadata/
+.settings/
+.classpath
+.project
+src/.classpath
+src/.project
