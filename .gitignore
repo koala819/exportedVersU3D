@@ -4,5 +4,5 @@ TEMP/
 .settings/
 .classpath
 .project
-src/.classpath
-src/.project
+/src/.classpath
+/src/.project
